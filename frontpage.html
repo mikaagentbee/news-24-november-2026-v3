@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The World in One Day — Tuesday 24 November 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1024px; height: 1024px; }
+  body {
+    font-family: "Liberation Sans", "DejaVu Sans", Arial, sans-serif;
+    background: #f6f1e2;
+    color: #1a1a1a;
+    padding: 10px 14px 8px 14px;
+    overflow: hidden;
+  }
+  .col { display: flex; flex-direction: column; height: 100%; }
+
+  /* ---------- top strip ---------- */
+  .topbar {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 3px solid #1a1a1a; padding-bottom: 3px;
+  }
+  .topbar .brand { color: #c8102e; font-weight: 900; font-size: 14px; letter-spacing: .12em; }
+  .topbar .stats { font-weight: 700; font-size: 12.5px; letter-spacing: .04em; }
+  .topbar .stats b { color: #c8102e; }
+
+  /* ---------- title ---------- */
+  .title {
+    font-family: "Liberation Serif", "DejaVu Serif", Georgia, serif;
+    font-size: 47px; font-weight: 700; text-align: center;
+    letter-spacing: .005em; line-height: 1.02; padding: 3px 0 2px 0;
+  }
+  .strap {
+    text-align: center; font-family: "Liberation Serif", Georgia, serif;
+    font-style: italic; font-size: 14.5px; color: #333;
+    border-bottom: 1px solid #999; padding-bottom: 3px;
+  }
+  .strap b { font-style: normal; }
+
+  /* ---------- region tally bar ---------- */
+  .regions { display: flex; height: 21px; margin-top: 5px; border: 1px solid #1a1a1a; }
+  .regions div {
+    color: #fff; font-weight: 700; font-size: 11.5px; line-height: 19px;
+    text-align: center; letter-spacing: .01em; white-space: nowrap; overflow: hidden;
+  }
+  .r-asia { background: #c8102e; } .r-europe { background: #1971c2; }
+  .r-americas { background: #7048b6; } .r-world { background: #495057; }
+  .r-me { background: #e8590c; } .r-africa { background: #2f9e44; }
+  .r-oceania { background: #0b7285; }
+
+  /* ---------- timeline + numbers strips ---------- */
+  .strip { display: flex; align-items: stretch; margin-top: 5px; border: 1px solid #1a1a1a; background: #fffdf4; }
+  .strip .lab {
+    background: #1a1a1a; color: #fff; font-weight: 900; font-size: 11.5px;
+    display: flex; align-items: center; text-align: center; padding: 3px 8px;
+    letter-spacing: .05em; line-height: 1.25;
+  }
+  .strip .cells { display: flex; flex: 1; }
+  .strip .cell { flex: 1; padding: 2px 7px 3px 7px; border-left: 1px solid #ccc; }
+  .strip .cell:first-child { border-left: none; }
+  .strip .t { font-weight: 900; font-size: 14px; color: #c8102e; }
+  .strip .d { font-size: 10.5px; color: #333; line-height: 1.15; }
+  .strip .n { font-weight: 900; font-size: 17.5px; }
+  .strip .nd { font-size: 10px; color: #333; line-height: 1.12; }
+
+  /* ---------- cards ---------- */
+  .legend {
+    display: flex; justify-content: space-between; align-items: baseline; margin-top: 6px;
+  }
+  .legend .h { font-weight: 900; font-size: 14px; letter-spacing: .06em; }
+  .legend .how { font-size: 9.8px; color: #444; }
+  .legend .how b { color: #1a1a1a; }
+  .cards { display: flex; gap: 7px; margin-top: 3px; }
+  .card { flex: 1; background: #fffdf6; border: 1px solid #b9b09a; padding: 5px 7px 4px 7px; }
+  .illo { position: relative; border: 1px solid #8d8570; overflow: hidden; }
+  .illo svg { display: block; width: 100%; height: 100%; }
+  .num {
+    position: absolute; top: 4px; left: 4px; width: 21px; height: 21px;
+    background: #c8102e; color: #fff; border: 2px solid #fff; border-radius: 50%;
+    font-weight: 900; font-size: 12.5px; line-height: 18px; text-align: center;
+    box-shadow: 0 1px 2px rgba(0,0,0,.35);
+  }
+  .tagrow { display: flex; justify-content: space-between; align-items: center; margin-top: 5px; }
+  .tag { font-weight: 900; font-size: 10.5px; letter-spacing: .05em; }
+  .badge {
+    font-size: 8.8px; font-weight: 900; letter-spacing: .05em;
+    border: 1.6px solid #2f9e44; color: #237a36; padding: 1px 4px; border-radius: 2px;
+  }
+  .badge.official { border-color: #b8860b; color: #96690a; }
+  .badge.reported { border-color: #7048b6; color: #5f3dc4; }
+  .card h3 { font-size: 16.5px; line-height: 1.13; font-weight: 900; margin-top: 2px; }
+  .card p { font-size: 10.8px; line-height: 1.28; color: #2b2b2b; margin-top: 3px; }
+  .card p .src { font-weight: 700; }
+  .big .illo { height: 80px; }
+  .big h3 { font-size: 18.5px; }
+  .big p { font-size: 11.2px; }
+  .small .illo { height: 42px; }
+  .small h3 { font-size: 13.2px; }
+  .small p { font-size: 9.9px; line-height: 1.2; }
+  .small .tag { font-size: 9.3px; }
+  .small .badge { font-size: 7.8px; padding: 0 3px; }
+  .small .num { width: 18px; height: 18px; font-size: 11px; line-height: 15px; }
+
+  /* ---------- bottom: also list + map ---------- */
+  .bottom { display: flex; gap: 10px; margin-top: 4px; }
+  .also { flex: 1.62; }
+  .also .h { font-weight: 900; font-size: 13.5px; letter-spacing: .04em; border-bottom: 2.4px solid #1a1a1a; padding-bottom: 3px; }
+  .also .h .lg { float: right; font-size: 9.3px; font-weight: 400; color: #444; letter-spacing: 0; }
+  .also .cols { display: flex; gap: 12px; margin-top: 4px; }
+  .also .colA { flex: 1; }
+  .also .it { font-size: 9.9px; line-height: 1.17; padding: 0.6px 0; border-bottom: 1px dotted #c9c0a4; }
+  .also .it b.n { color: #c8102e; font-weight: 900; }
+  .also .it b.p { font-weight: 900; }
+  .also .it .s { font-style: italic; color: #555; }
+  .bl {
+    display: inline-block; width: 12.5px; height: 12.5px; border-radius: 50%;
+    border: 1.4px solid #b8860b; color: #96690a; font-size: 8px; font-weight: 900;
+    text-align: center; line-height: 11px; vertical-align: 1px;
+  }
+  .bl.c { border-color: #2f9e44; color: #237a36; }
+  .bl.cl { border-color: #c8102e; color: #c8102e; width: 15px; border-radius: 6px; }
+  .side { flex: 1; }
+  .side .h { font-weight: 900; font-size: 13.5px; letter-spacing: .04em; border-bottom: 2.4px solid #1a1a1a; padding-bottom: 3px; }
+  .mapbox { position: relative; margin-top: 4px; background: #eef3f0; border: 1px solid #b9b09a; }
+  .mapbox svg { display: block; width: 100%; }
+  .maplegend { display: flex; flex-wrap: wrap; gap: 2px 10px; margin-top: 4px; font-size: 9.6px; color: #333; }
+  .maplegend i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 3px; }
+
+  /* ---------- date check + footer ---------- */
+  .datecheck {
+    margin-top: 4px; border: 2px solid #c8102e; background: #fdf3f0;
+    padding: 4px 9px; font-size: 10px; line-height: 1.26;
+  }
+  .datecheck b { color: #c8102e; letter-spacing: .05em; }
+  .foot { margin-top: 4px; text-align: center; font-size: 10.3px; color: #444; font-style: italic; }
+</style>
+</head>
+<body>
+<div class="col">
+
+  <div class="topbar">
+    <div class="brand">ONE DAY OF WORLD NEWS</div>
+    <div class="stats"><b>39 STORIES</b> · 7 REGIONS · 13 DRAWN · EVERY ONE FROM TUESDAY 24 NOVEMBER 2026</div>
+  </div>
+
+  <div class="title">Tuesday 24 November 2026</div>
+  <div class="strap">China puts Shanghai&rsquo;s party chief under investigation &middot; <b>US jury finds Huawei guilty</b> &middot; Russian attacks kill 9 in Ukraine</div>
+
+  <div class="regions">
+    <div class="r-asia" style="flex:11">Asia 11</div>
+    <div class="r-europe" style="flex:7">Europe 7</div>
+    <div class="r-americas" style="flex:7">Americas 7</div>
+    <div class="r-world" style="flex:6">World 6</div>
+    <div class="r-me" style="flex:5">Middle East 5</div>
+    <div class="r-africa" style="flex:2.4">Africa 2</div>
+    <div class="r-oceania" style="flex:2.8">Oceania 1</div>
+  </div>
+
+  <div class="strip">
+    <div class="lab">THE DAY<br>IN UTC</div>
+    <div class="cells">
+      <div class="cell"><div class="t">00:30</div><div class="d">India bus crash</div></div>
+      <div class="cell"><div class="t">01:00</div><div class="d">Hanoi eatery blast</div></div>
+      <div class="cell"><div class="t">05:30</div><div class="d">Sanofi&ndash;Insmed deal</div></div>
+      <div class="cell"><div class="t">11:14</div><div class="d">Ariane 6 launch</div></div>
+      <div class="cell"><div class="t">11:37</div><div class="d">Ukraine: 9 killed</div></div>
+      <div class="cell"><div class="t">16:30</div><div class="d">Turkey crash</div></div>
+      <div class="cell"><div class="t">21:00</div><div class="d">Dow back over 50,000</div></div>
+    </div>
+  </div>
+
+  <div class="strip">
+    <div class="lab">IN<br>NUMBERS</div>
+    <div class="cells">
+      <div class="cell"><div class="n">9</div><div class="nd">killed in Ukraine in a day</div></div>
+      <div class="cell"><div class="n">10 of 12</div><div class="nd">counts: Huawei guilty</div></div>
+      <div class="cell"><div class="n">50,000</div><div class="nd">Dow closes back above</div></div>
+      <div class="cell"><div class="n">$41bn</div><div class="nd">Sanofi buys Insmed</div></div>
+      <div class="cell"><div class="n">5,258</div><div class="nd">heat deaths, England record</div></div>
+      <div class="cell"><div class="n">13</div><div class="nd">die in UAE bus crash</div></div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="h">13 DRAWN STORIES</div>
+    <div class="how"><b>HOW SURE</b> — <b>CONFIRMED</b> verified by 2+ sources · <b>OFFICIAL</b> on the record · <b>REPORTED</b> named outlet, not yet official · <b>CLAIM</b> one side&rsquo;s account · <b>ONGOING</b> still developing</div>
+  </div>
+
+  <!-- ================= big cards 1-3 ================= -->
+  <div class="cards big">
+    <div class="card">
+      <div class="illo">
+        <svg viewBox="0 0 300 108" preserveAspectRatio="none">
+          <rect width="300" height="108" fill="#cfdce8"/>
+          <rect x="8" y="38" width="26" height="52" fill="#33506e"/>
+          <rect x="40" y="26" width="20" height="64" fill="#274058"/>
+          <rect x="66" y="46" width="30" height="44" fill="#3d5a76"/>
+          <rect x="196" y="34" width="24" height="56" fill="#274058"/>
+          <rect x="226" y="22" width="18" height="68" fill="#33506e"/>
+          <rect x="250" y="44" width="34" height="46" fill="#3d5a76"/>
+          <rect x="150" y="30" width="5" height="60" fill="#7a1f2b"/>
+          <circle cx="152" cy="26" r="10" fill="#a52a37"/>
+          <circle cx="152" cy="48" r="6.5" fill="#a52a37"/>
+          <rect x="150" y="52" width="5" height="38" fill="#7a1f2b"/>
+          <circle cx="112" cy="44" r="21" fill="rgba(255,255,255,0.25)" stroke="#1a1a1a" stroke-width="4"/>
+          <line x1="127" y1="60" x2="146" y2="80" stroke="#1a1a1a" stroke-width="6" stroke-linecap="round"/>
+          <rect x="0" y="86" width="300" height="22" fill="#c8102e"/>
+          <text x="150" y="102" text-anchor="middle" font-family="Liberation Sans, Arial" font-weight="900" font-size="15" fill="#ffffff" letter-spacing="2">UNDER INVESTIGATION</text>
+        </svg>
+        <span class="num">1</span>
+      </div>
+      <div class="tagrow"><span class="tag" style="color:#c8102e">CHINA · POLITICS</span><span class="badge official">OFFICIAL</span></div>
+      <h3>China investigates Politburo member Chen Jining</h3>
+      <p>Shanghai&rsquo;s party chief, 62, is under investigation for &ldquo;serious violations&rdquo;, state media say. <span class="src">CCTV via CNN</span></p>
+    </div>
+
+    <div class="card">
+      <div class="illo">
+        <svg viewBox="0 0 300 108" preserveAspectRatio="none">
+          <rect width="300" height="108" fill="#e8e6df"/>
+          <polygon points="20,34 150,8 196,34" fill="#8d99ae"/>
+          <rect x="20" y="34" width="176" height="7" fill="#6d7789"/>
+          <rect x="34" y="46" width="13" height="42" fill="#aeb6c2"/>
+          <rect x="66" y="46" width="13" height="42" fill="#aeb6c2"/>
+          <rect x="98" y="46" width="13" height="42" fill="#aeb6c2"/>
+          <rect x="130" y="46" width="13" height="42" fill="#aeb6c2"/>
+          <rect x="162" y="46" width="13" height="42" fill="#aeb6c2"/>
+          <rect x="20" y="88" width="176" height="7" fill="#6d7789"/>
+          <rect x="12" y="95" width="192" height="6" fill="#8d99ae"/>
+          <text x="108" y="30" text-anchor="middle" font-family="Liberation Sans, Arial" font-weight="700" font-size="10.5" fill="#44506b" letter-spacing="3">US COURT</text>
+          <rect x="204" y="10" width="88" height="88" fill="#c8102e"/>
+          <text x="248" y="50" text-anchor="middle" font-family="Liberation Sans, Arial" font-weight="900" font-size="23" fill="#ffffff">GUILTY</text>
+          <text x="248" y="70" text-anchor="middle" font-family="Liberation Sans, Arial" font-weight="700" font-size="8.4" fill="#ffffff">10 OF 12 COUNTS</text>
+        </svg>
+        <span class="num">2</span>
+      </div>
+      <div class="tagrow"><span class="tag" style="color:#7048b6">NEW YORK · COURTS</span><span class="badge">CONFIRMED</span></div>
+      <h3>US jury finds Huawei guilty in trade-secrets case</h3>
+      <p>Federal court, Brooklyn: guilty on 10 of 12 counts, cleared of racketeering. Huawei will appeal. <span class="src">AP, CNN</span></p>
+    </div>
+
+    <div class="card">
+      <div class="illo">
+        <svg viewBox="0 0 300 108" preserveAspectRatio="none">
+          <rect width="300" height="108" fill="#31435f"/>
+          <rect y="62" width="300" height="46" fill="#e8873a"/>
+          <rect y="78" width="300" height="30" fill="#20242c"/>
+          <rect x="14" y="52" width="22" height="28" fill="#14181f"/>
+          <rect x="44" y="44" width="16" height="36" fill="#14181f"/>
+          <rect x="66" y="58" width="28" height="22" fill="#14181f"/>
+          <rect x="206" y="48" width="20" height="32" fill="#14181f"/>
+          <rect x="234" y="56" width="30" height="24" fill="#14181f"/>
+          <rect x="112" y="60" width="76" height="20" fill="#3a3f47"/>
+          <rect x="122" y="65" width="8" height="8" fill="#ffd23f"/>
+          <rect x="138" y="65" width="8" height="8" fill="#ffd23f"/>
+          <rect x="154" y="65" width="8" height="8" fill="#ffd23f"/>
+          <rect x="170" y="65" width="8" height="8" fill="#2b3038"/>
+          <polygon points="30,20 52,16 46,22 54,24 34,27" fill="#0d1117"/>
+          <polygon points="120,12 142,8 136,14 144,16 124,19" fill="#0d1117"/>
+          <polygon points="216,24 238,20 232,26 240,28 220,31" fill="#0d1117"/>
+          <rect x="0" y="86" width="300" height="22" fill="#c8102e"/>
+          <text x="150" y="102" text-anchor="middle" font-family="Liberation Sans, Arial" font-weight="900" font-size="15" fill="#ffffff" letter-spacing="2">9 KILLED IN A DAY</text>
+        </svg>
+        <span class="num">3</span>
+      </div>
+      <div class="tagrow"><span class="tag" style="color:#1971c2">UKRAINE · WAR</span><span class="badge">CONFIRMED</span></div>
+      <h3>Russian attacks kill 9 across Ukraine in a day</h3>
+      <p>Tally at 11:37 UTC: 9 killed and 81 hurt; a Zaporizhzhia apartment block is hit. <span class="src">Kyiv Independent</span></p>
+    </div>
+  </div>
+
+  <!-- ================= small cards 4-8 ================= -->
+  <div class="cards small">
+    <div class="card">
+      <div class="illo">
+        <svg viewBox="0 0 180 56" preserveAspectRatio="none">
+          <rect width="180" height="56" fill="#dcebf5"/>
+          <polygon points="86,34 128,14 122,24 134,22 96,42" fill="#33506e"/>
+          <polygon points="112,30 128,34 110,38" fill="#33506e"/>
+          <rect x="0" y="0" width="78" height="56" fill="#c8102e"/>
+          <text x="47" y="24" text-anchor="middle" font-family="Liberation Sans, Arial" font-weight="900" font-size="10" fill="#fff">AIR RAID</text>
+          <text x="47" y="40" text-anchor="middle" font-family="Liberation Sans, Arial" font-weight="900" font-size="10" fill="#fff">ALERT</text>
+        </svg>
+        <span class="num">4</span>
+      </div>
+      <div class="tagrow"><span class="tag" style="color:#c8102e">SOUTH KOREA</span><span class="badge">CONFIRMED</span></div>
+      <h3>Russian jets spark Korea air-raid alert</h3>
+      <p>Ulleungdo told to shelter at 07:52 local time. <span class="src">Korea Herald</span></p>
+    </div>
+
+    <div class="card">
+      <div class="illo">
+        <svg viewBox="0 0 180 56" preserveAspectRatio="none">
+          <rect width="180" height="56" fill="#7fb3c8"/>
+          <rect x="14" y="7" width="62" height="42" fill="#ffffff" stroke="#8d8570"/>
+          <rect x="21" y="14" width="48" height="4" fill="#b9b09a"/>
+          <rect x="21" y="22" width="48" height="4" fill="#b9b09a"/>
+          <rect x="21" y="30" width="34" height="4" fill="#b9b09a"/>
+          <circle cx="52" cy="40" r="10" fill="none" stroke="#c8102e" stroke-width="3.4"/>
+          <line x1="45" y1="33" x2="59" y2="47" stroke="#c8102e" stroke-width="3.4"/>
+          <text x="126" y="24" text-anchor="middle" font-family="Liberation Sans, Arial" font-weight="900" font-size="12.5" fill="#123c4e">CHINA PACT</text>
+          <text x="126" y="41" text-anchor="middle" font-family="Liberation Sans, Arial" font-weight="700" font-size="10.5" fill="#123c4e">ENDS 2027</text>
+        </svg>
+        <span class="num">5</span>
+      </div>
+      <div class="tagrow"><span class="tag" style="color:#0b7285">SOLOMONS</span><span class="badge reported">REPORTED</span></div>
+      <h3>Solomons to let its China pact lapse</h3>
+      <p>Won&rsquo;t renew the 2022 deal that ends in 2027. <span class="src">SMH, ABC</span></p>
+    </div>
+
+    <div class="card">
+      <div class="illo">
+        <svg viewBox="0 0 180 56" preserveAspectRatio="none">
+          <rect width="180" height="56" fill="#2f9e44"/>
+          <path d="M84 8 h12 v6 c0 8 -3 12 -6 12 c-3 0 -6 -4 -6 -12 z" fill="#ffd23f" stroke="#b8860b" stroke-width="1.4"/>
+          <path d="M84 12 c-6 -2 -9 1 -7 5 c1.4 3 5 4 7 3 M96 12 c6 -2 9 1 7 5 c-1.4 3 -5 4 -7 3" fill="none" stroke="#b8860b" stroke-width="1.8"/>
+          <rect x="87" y="27" width="6" height="5" fill="#b8860b"/>
+          <rect x="81" y="32" width="18" height="4" fill="#8a6508"/>
+          <rect x="78" y="38" width="24" height="5" fill="#5f4705"/>
+          <text x="126" y="25" text-anchor="middle" font-family="Liberation Sans, Arial" font-weight="900" font-size="12" fill="#ffffff">AFCON</text>
+          <text x="126" y="41" text-anchor="middle" font-family="Liberation Sans, Arial" font-weight="900" font-size="10" fill="#ffffff">CHAMPIONS</text>
+          <text x="34" y="33" text-anchor="middle" font-family="Liberation Sans, Arial" font-weight="900" font-size="12" fill="#ffffff">1&ndash;0</text>
+        </svg>
+        <span class="num">6</span>
+      </div>
+      <div class="tagrow"><span class="tag" style="color:#2f9e44">SENEGAL · SPORT</span><span class="badge">CONFIRMED</span></div>
+      <h3>Sports court gives Senegal AFCON title</h3>
+      <p>CAS restores 1&ndash;0 final win; champions again. <span class="src">CNN</span></p>
+    </div>
+
+    <div class="card">
+      <div class="illo">
+        <svg viewBox="0 0 180 56" preserveAspectRatio="none">
+          <rect width="180" height="56" fill="#14213d"/>
+          <polyline points="8,46 44,40 74,43 108,28 140,30 170,12" fill="none" stroke="#37d67a" stroke-width="3"/>
+          <polygon points="170,12 160,13 167,21" fill="#37d67a"/>
+          <rect x="30" y="5" width="80" height="17" fill="#ffffff"/>
+          <text x="70" y="18" text-anchor="middle" font-family="Liberation Sans, Arial" font-weight="900" font-size="12" fill="#14213d">DOW 50,000</text>
+          <text x="136" y="50" text-anchor="middle" font-family="Liberation Sans, Arial" font-weight="700" font-size="9.5" fill="#ff8787">NASDAQ &minus;1.5%</text>
+        </svg>
+        <span class="num">7</span>
+      </div>
+      <div class="tagrow"><span class="tag" style="color:#7048b6">WALL STREET</span><span class="badge">CONFIRMED</span></div>
+      <h3>Dow closes back above 50,000</h3>
+      <p>At 21:00 UTC; Nasdaq falls 1.5% as chips slide. <span class="src">ABC News</span></p>
+    </div>
+
+    <div class="card">
+      <div class="illo">
+        <svg viewBox="0 0 180 56" preserveAspectRatio="none">
+          <rect width="180" height="56" fill="#0b7285"/>
+          <g transform="rotate(-24 52 28)">
+            <rect x="22" y="19" width="60" height="19" rx="9.5" fill="#ffffff"/>
+            <path d="M52 19 h21 a9.5 9.5 0 0 1 0 19 h-21 z" fill="#ffd23f"/>
+            <line x1="52" y1="19" x2="52" y2="38" stroke="#0b7285" stroke-width="2"/>
+          </g>
+          <rect x="98" y="10" width="76" height="36" fill="#14213d"/>
+          <text x="136" y="26" text-anchor="middle" font-family="Liberation Sans, Arial" font-weight="900" font-size="13" fill="#ffffff">$41BN DEAL</text>
+          <text x="136" y="40" text-anchor="middle" font-family="Liberation Sans, Arial" font-weight="700" font-size="8.6" fill="#ffd23f">SANOFI + INSMED</text>
+        </svg>
+        <span class="num">8</span>
+      </div>
+      <div class="tagrow"><span class="tag" style="color:#1971c2">FRANCE · PHARMA</span><span class="badge official">OFFICIAL</span></div>
+      <h3>Sanofi to buy Insmed for $41bn</h3>
+      <p>Deal announced 05:30 UTC: $175 a share, cash. <span class="src">Sanofi</span></p>
+    </div>
+  </div>
+
+  <!-- ================= small cards 9-13 ================= -->
+  <div class="cards small">
+    <div class="card">
+      <div class="illo">
+        <svg viewBox="0 0 180 56" preserveAspectRatio="none">
+          <rect width="180" height="56" fill="#1d2733"/>
+          <path d="M150 6 a11 11 0 1 0 6 19 a13.5 13.5 0 0 1 -6 -19z" fill="#ffd23f"/>
+          <rect x="6" y="34" width="18" height="22" fill="#0d1117"/>
+          <rect x="28" y="28" width="13" height="28" fill="#0d1117"/>
+          <rect x="45" y="38" width="22" height="18" fill="#0d1117"/>
+          <rect x="120" y="32" width="16" height="24" fill="#0d1117"/>
+          <rect x="86" y="36" width="26" height="20" fill="#39424e"/>
+          <rect x="90" y="41" width="5" height="5" fill="#ffd23f"/>
+          <rect x="98" y="41" width="5" height="5" fill="#ffd23f"/>
+          <rect x="106" y="41" width="5" height="5" fill="#39424e"/>
+          <rect x="30" y="6" width="80" height="17" fill="#c8102e"/>
+          <text x="70" y="19" text-anchor="middle" font-family="Liberation Sans, Arial" font-weight="900" font-size="11.5" fill="#fff">GAZA CITY</text>
+          <text x="70" y="31" font-family="Liberation Sans, Arial" font-weight="700" font-size="8.5" fill="#ffd23f">AIR STRIKE</text>
+        </svg>
+        <span class="num">9</span>
+      </div>
+      <div class="tagrow"><span class="tag" style="color:#e8590c">GAZA · WAR</span><span class="badge">CONFIRMED</span></div>
+      <h3>Israel kills Hamas security chief</h3>
+      <p>Naim Abu Nahal dies in Gaza City air strike. <span class="src">WaPo, ToI</span></p>
+    </div>
+
+    <div class="card">
+      <div class="illo">
+        <svg viewBox="0 0 180 56" preserveAspectRatio="none">
+          <rect width="180" height="56" fill="#e9d8a6"/>
+          <polygon points="30,50 48,10 66,50" fill="none" stroke="#5f4705" stroke-width="3"/>
+          <line x1="36" y1="34" x2="60" y2="34" stroke="#5f4705" stroke-width="2.4"/>
+          <line x1="40" y1="24" x2="56" y2="24" stroke="#5f4705" stroke-width="2.4"/>
+          <line x1="48" y1="10" x2="78" y2="16" stroke="#5f4705" stroke-width="2.6"/>
+          <rect x="74" y="13" width="9" height="7" fill="#5f4705"/>
+          <rect x="0" y="50" width="180" height="6" fill="#c9a227"/>
+          <text x="126" y="24" text-anchor="middle" font-family="Liberation Sans, Arial" font-weight="900" font-size="12" fill="#5f4705">KURDISH OIL</text>
+          <text x="126" y="40" text-anchor="middle" font-family="Liberation Sans, Arial" font-weight="700" font-size="10.5" fill="#5f4705">KIRKUK</text>
+        </svg>
+        <span class="num">10</span>
+      </div>
+      <div class="tagrow"><span class="tag" style="color:#e8590c">IRAQ · ENERGY</span><span class="badge official">OFFICIAL</span></div>
+      <h3>Baghdad orders Kurdish oil takeover</h3>
+      <p>Kirkuk and 3 more provinces; Erbil says no. <span class="src">The National</span></p>
+    </div>
+
+    <div class="card">
+      <div class="illo">
+        <svg viewBox="0 0 180 56" preserveAspectRatio="none">
+          <rect width="180" height="56" fill="#f1e3c8"/>
+          <rect y="42" width="180" height="14" fill="#6b6252"/>
+          <rect y="47" width="180" height="3" fill="#f6f1e2"/>
+          <rect x="16" y="24" width="52" height="16" rx="3" fill="#1971c2"/>
+          <rect x="21" y="27" width="9" height="7" fill="#cfe6f7"/>
+          <rect x="33" y="27" width="9" height="7" fill="#cfe6f7"/>
+          <rect x="45" y="27" width="9" height="7" fill="#cfe6f7"/>
+          <circle cx="28" cy="42" r="5" fill="#1a1a1a"/>
+          <circle cx="58" cy="42" r="5" fill="#1a1a1a"/>
+          <rect x="76" y="20" width="34" height="20" fill="#8d8570"/>
+          <rect x="110" y="28" width="14" height="12" fill="#6d6455"/>
+          <circle cx="86" cy="42" r="5" fill="#1a1a1a"/>
+          <circle cx="116" cy="42" r="5" fill="#1a1a1a"/>
+          <rect x="126" y="8" width="50" height="19" fill="#c8102e"/>
+          <text x="151" y="22" text-anchor="middle" font-family="Liberation Sans, Arial" font-weight="900" font-size="12" fill="#fff">13 DEAD</text>
+        </svg>
+        <span class="num">11</span>
+      </div>
+      <div class="tagrow"><span class="tag" style="color:#e8590c">UAE · DISASTER</span><span class="badge official">OFFICIAL</span></div>
+      <h3>Bus hits truck in Ras Al Khaimah: 13 dead</h3>
+      <p>Bus carried 41; 14 hurt, police say. <span class="src">The National</span></p>
+    </div>
+
+    <div class="card">
+      <div class="illo">
+        <svg viewBox="0 0 180 56" preserveAspectRatio="none">
+          <rect width="180" height="56" fill="#fdeeda"/>
+          <circle cx="34" cy="26" r="14" fill="#ffb703"/>
+          <g stroke="#ffb703" stroke-width="3" stroke-linecap="round">
+            <line x1="34" y1="4" x2="34" y2="9"/><line x1="34" y1="43" x2="34" y2="48"/>
+            <line x1="12" y1="26" x2="17" y2="26"/><line x1="51" y1="26" x2="56" y2="26"/>
+            <line x1="18" y1="10" x2="22" y2="14"/><line x1="46" y1="38" x2="50" y2="42"/>
+            <line x1="50" y1="10" x2="46" y2="14"/><line x1="22" y1="38" x2="18" y2="42"/>
+          </g>
+          <rect x="70" y="8" width="7" height="34" rx="3.5" fill="#ffffff" stroke="#c8102e" stroke-width="1.6"/>
+          <rect x="72.2" y="20" width="2.6" height="20" fill="#c8102e"/>
+          <circle cx="73.5" cy="44" r="6" fill="#c8102e"/>
+          <rect x="88" y="10" width="86" height="36" fill="#c8102e"/>
+          <text x="131" y="27" text-anchor="middle" font-family="Liberation Sans, Arial" font-weight="900" font-size="16" fill="#fff">5,258</text>
+          <text x="131" y="41" text-anchor="middle" font-family="Liberation Sans, Arial" font-weight="700" font-size="9.5" fill="#fff">A RECORD</text>
+        </svg>
+        <span class="num">12</span>
+      </div>
+      <div class="tagrow"><span class="tag" style="color:#1971c2">ENGLAND · HEALTH</span><span class="badge official">OFFICIAL</span></div>
+      <h3>Record 5,258 heat deaths in England</h3>
+      <p>Summer 2026; old record 2,985 in 2022. <span class="src">UKHSA</span></p>
+    </div>
+
+    <div class="card">
+      <div class="illo">
+        <svg viewBox="0 0 180 56" preserveAspectRatio="none">
+          <rect width="180" height="56" fill="#0b1e3a"/>
+          <g fill="#ffffff">
+            <circle cx="18" cy="10" r="1.3"/><circle cx="52" cy="6" r="1"/><circle cx="96" cy="12" r="1.2"/>
+            <circle cx="140" cy="7" r="1"/><circle cx="166" cy="16" r="1.3"/><circle cx="70" cy="20" r="0.9"/>
+            <circle cx="28" cy="24" r="0.9"/><circle cx="156" cy="30" r="0.9"/>
+          </g>
+          <g transform="rotate(24 44 30)">
+            <rect x="39" y="12" width="10" height="26" rx="5" fill="#e9edf2"/>
+            <polygon points="39,38 49,38 44,48" fill="#e8873a"/>
+            <rect x="36" y="26" width="3.4" height="9" fill="#c8102e"/>
+            <rect x="48.6" y="26" width="3.4" height="9" fill="#c8102e"/>
+            <circle cx="44" cy="19" r="3" fill="#1971c2"/>
+          </g>
+          <text x="122" y="24" text-anchor="middle" font-family="Liberation Sans, Arial" font-weight="900" font-size="12.5" fill="#ffffff">36 SATELLITES</text>
+          <text x="122" y="40" text-anchor="middle" font-family="Liberation Sans, Arial" font-weight="700" font-size="10" fill="#ffd23f">ARIANE 6</text>
+        </svg>
+        <span class="num">13</span>
+      </div>
+      <div class="tagrow"><span class="tag" style="color:#495057">KOUROU · SPACE</span><span class="badge">CONFIRMED</span></div>
+      <h3>Ariane 6 lofts 36 Amazon satellites</h3>
+      <p>Lift-off 11:14 UTC from French Guiana. <span class="src">AIAA, Xinhua</span></p>
+    </div>
+  </div>
+
+  <!-- ================= bottom: also list + map ================= -->
+  <div class="bottom">
+    <div class="also">
+      <div class="h">ALSO ON TUESDAY 24 NOVEMBER &middot; 26 MORE
+        <span class="lg"><b>C</b> 2+ outlets &middot; <b>O</b> official &middot; <b>R</b> one outlet &middot; <b>CL</b> one side&rsquo;s claim</span>
+      </div>
+      <div class="cols">
+        <div class="colA">
+          <div class="it"><b class="n">14</b> <b class="p">Hanoi:</b> 01:00 UTC, eatery gas blast kills 7 <span class="s">VnExpress</span> <span class="bl c">C</span></div>
+          <div class="it"><b class="n">15</b> <b class="p">India:</b> 00:30 UTC, bus crash kills 4 children <span class="s">Tribune</span> <span class="bl c">C</span></div>
+          <div class="it"><b class="n">16</b> <b class="p">Indonesia:</b> factory fire toll hits 26, probe opens <span class="s">Jakarta Post</span> <span class="bl c">C</span></div>
+          <div class="it"><b class="n">17</b> <b class="p">Taiwan:</b> Taiex leaps 8.99% in a record point gain <span class="s">CNA</span> <span class="bl c">C</span></div>
+          <div class="it"><b class="n">18</b> <b class="p">China:</b> Pakistani named to Shenzhou-24 crew, a first <span class="s">HKFP</span> <span class="bl c">C</span></div>
+          <div class="it"><b class="n">19</b> <b class="p">Japan:</b> shield for ICC judges amid US sanctions <span class="s">Kyodo</span> <span class="bl c">C</span></div>
+          <div class="it"><b class="n">20</b> <b class="p">Malaysia:</b> 6,500 Myanmar workers to go home in Dec <span class="s">Bernama</span> <span class="bl">O</span></div>
+          <div class="it"><b class="n">21</b> <b class="p">Nepal:</b> M5.3 quake at the Tibet border, no casualties <span class="s">USGS</span> <span class="bl">O</span></div>
+          <div class="it"><b class="n">22</b> <b class="p">Bangladesh:</b> Gazipur garment workers clash with police <span class="s">AFP</span> <span class="bl c">C</span></div>
+          <div class="it"><b class="n">23</b> <b class="p">Saudi:</b> Riyadh&rsquo;s tallest tower struck, 11 injured <span class="s">Reuters</span> <span class="bl c">C</span></div>
+          <div class="it"><b class="n">24</b> <b class="p">Iran:</b> a fourth tanker hit a Hormuz mine, Tehran says <span class="s">IRNA</span> <span class="bl cl">CL</span></div>
+          <div class="it"><b class="n">25</b> <b class="p">Turkey:</b> 16:30 UTC, helicopter crash kills 5 <span class="s">AA</span> <span class="bl c">C</span></div>
+          <div class="it"><b class="n">26</b> <b class="p">Hungary:</b> PM meets Zelensky in Uzhhorod <span class="s">MTI</span> <span class="bl c">C</span></div>
+        </div>
+        <div class="colA">
+          <div class="it"><b class="n">27</b> <b class="p">EU:</b> migration pact moves 1,283 of 30,000 planned <span class="s">Commission</span> <span class="bl">O</span></div>
+          <div class="it"><b class="n">28</b> <b class="p">Russia:</b> 355 drones downed overnight, Moscow says <span class="s">TASS</span> <span class="bl cl">CL</span></div>
+          <div class="it"><b class="n">29</b> <b class="p">Colombia:</b> gunmen hold 25 hostage in a Cartagena store <span class="s">Reuters</span> <span class="bl c">C</span></div>
+          <div class="it"><b class="n">30</b> <b class="p">Colombia:</b> car bomb hurts 23 in Meta, dissidents blamed <span class="s">El Tiempo</span> <span class="bl c">C</span></div>
+          <div class="it"><b class="n">31</b> <b class="p">Dell:</b> record revenue of $54.9bn <span class="s">Dell</span> <span class="bl">O</span></div>
+          <div class="it"><b class="n">32</b> <b class="p">Bitcoin</b> falls below $60,000 <span class="s">CoinDesk</span> <span class="bl c">C</span></div>
+          <div class="it"><b class="n">33</b> <b class="p">Alaska:</b> Sullivan concedes; Democrats reach 56 seats <span class="s">AP</span> <span class="bl c">C</span></div>
+          <div class="it"><b class="n">34</b> <b class="p">Nigeria:</b> central bank holds its rate at 23% <span class="s">CBN</span> <span class="bl">O</span></div>
+          <div class="it"><b class="n">35</b> <b class="p">Anthropic:</b> shares slip below the $83 IPO price <span class="s">CNBC</span> <span class="bl c">C</span></div>
+          <div class="it"><b class="n">36</b> <b class="p">Nvidia:</b> Huang apologises as the shares slide <span class="s">CNBC</span> <span class="bl c">C</span></div>
+          <div class="it"><b class="n">37</b> <b class="p">UNAIDS:</b> 1.2m new HIV infections in 2025 <span class="s">AFP</span> <span class="bl c">C</span></div>
+          <div class="it"><b class="n">38</b> <b class="p">UN:</b> 5 women an hour killed by kin, 47,000 in 2025 <span class="s">UNODC</span> <span class="bl">O</span></div>
+          <div class="it"><b class="n">39</b> <b class="p">Football:</b> Real Madrid 5&ndash;1 PSV, Champions League <span class="s">UEFA</span> <span class="bl c">C</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="side">
+      <div class="h">WHERE IT HAPPENED &middot; PINS 1&ndash;13</div>
+      <div class="mapbox">
+        <svg id="worldmap" viewBox="0 0 800 380">
+          <rect width="800" height="380" fill="#e8eef2"/>
+          <g id="dots"></g>
+          <g font-family="Liberation Sans, Arial" font-weight="900" font-size="12.5" fill="#ffffff" text-anchor="middle">
+            <g><circle cx="670" cy="146" r="11" fill="#c8102e" stroke="#fff" stroke-width="2"/><text x="670" y="151">1</text></g>
+            <g><circle cx="236" cy="120" r="11" fill="#7048b6" stroke="#fff" stroke-width="2"/><text x="236" y="125">2</text></g>
+            <g><circle cx="478" cy="100" r="11" fill="#1971c2" stroke="#fff" stroke-width="2"/><text x="478" y="105">3</text></g>
+            <g><circle cx="694" cy="128" r="11" fill="#c8102e" stroke="#fff" stroke-width="2"/><text x="694" y="133">4</text></g>
+            <g><circle cx="755" cy="257" r="11" fill="#0b7285" stroke="#fff" stroke-width="2"/><text x="755" y="262">5</text></g>
+            <g><circle cx="384" cy="191" r="11" fill="#2f9e44" stroke="#fff" stroke-width="2"/><text x="384" y="196">6</text></g>
+            <g><circle cx="252" cy="130" r="11" fill="#7048b6" stroke="#fff" stroke-width="2"/><text x="252" y="135">7</text></g>
+            <g><circle cx="418" cy="106" r="11" fill="#1971c2" stroke="#fff" stroke-width="2"/><text x="418" y="111">8</text></g>
+            <g><circle cx="474" cy="147" r="11" fill="#e8590c" stroke="#fff" stroke-width="2"/><text x="474" y="152">9</text></g>
+            <g><circle cx="500" cy="132" r="11" fill="#e8590c" stroke="#fff" stroke-width="2"/><text x="500" y="137">10</text></g>
+            <g><circle cx="526" cy="162" r="11" fill="#e8590c" stroke="#fff" stroke-width="2"/><text x="526" y="167">11</text></g>
+            <g><circle cx="390" cy="84" r="11" fill="#1971c2" stroke="#fff" stroke-width="2"/><text x="390" y="89">12</text></g>
+            <g><circle cx="283" cy="217" r="11" fill="#7048b6" stroke="#fff" stroke-width="2"/><text x="283" y="222">13</text></g>
+          </g>
+        </svg>
+      </div>
+      <div class="maplegend">
+        <span><i style="background:#c8102e"></i>Asia 11</span>
+        <span><i style="background:#1971c2"></i>Europe 7</span>
+        <span><i style="background:#7048b6"></i>Americas 7</span>
+        <span><i style="background:#495057"></i>World 6</span>
+        <span><i style="background:#e8590c"></i>Middle East 5</span>
+        <span><i style="background:#2f9e44"></i>Africa 2</span>
+        <span><i style="background:#0b7285"></i>Oceania 1</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="datecheck"><b>DATE CHECK</b> &mdash; held back on purpose, because they are not Tuesday&rsquo;s news. <b>Sun 22 Nov:</b> COP31 ends without a deal. <b>Mon 23 Nov:</b> Iran&rsquo;s &ldquo;three tankers hit mines&rdquo; claim &middot; Huang reinstated as Nvidia CEO &middot; Trump hush-money appeal ruling &middot; EU&rsquo;s 22nd Russia sanctions package &middot; Russia&rsquo;s warning to Estonia &middot; Indonesia fire toll stood at 24. <b>Not yet (Wed):</b> Solomons&ndash;Australia treaty signing &middot; Shenzhou-24 launch.</div>
+
+  <div class="foot">Every story happened or was first reported on Tuesday 24 November 2026 (UTC; Korea&rsquo;s alert by local time) &middot; sources named on each item &middot; original drawings, no photos</div>
+
+</div>
+
+<script>
+// Stylised dot world map: each string is one latitude band (85N to 55S),
+// each character one 4.5-degree cell; "#" is land. Dots are drawn as SVG
+// circles so the map stays crisp at any size.
+var ROWS = [
+"................................................................................",
+"..........######...............#####..........##........############............",
+".....###############......######......####..################################....",
+".#########..##################...#####....######################################",
+".##########.####################..####....######################################",
+"..######################..##..............####..############################....",
+"...####################...................########################################",
+"....##################....................########################################",
+".....################....................##############################.######....",
+"......##############.....................############################..#####......",
+".......############......................###########################...###.......",
+".......##########........................##################..######...##.........",
+"........########.........................#################...#################.....",
+".........######..........................################..##################......",
+"..........#####...........................##############....################.......",
+"...........#####...........................############......##############........",
+"............####......#####................###########........##########...........",
+"......................########.............##########.........########.............",
+"......................#########............#########...........######..............",
+"......................##########...........########............#####...............",
+".......................#########...........#######.............####................",
+".......................########............######..............###.................",
+"........................#######............#####...............##..................",
+"........................######.............####....................................",
+".........................#####.............###.....................................",
+".........................####..............##......................................",
+".........................###...............#.......................................",
+".........................##........................................................",
+".........................#.........................................................",
+"................................................................................",
+"................................................................................",
+"................................................................................"
+];
+var g = document.getElementById("dots");
+var out = "";
+for (var r = 0; r < ROWS.length; r++) {
+  var row = ROWS[r];
+  for (var c = 0; c < row.length; c++) {
+    if (row.charAt(c) === "#") {
+      out += '<circle cx="' + (c * 10 + 5) + '" cy="' + (r * 11.9 + 6) + '" r="3.4" fill="#c9b380"/>';
+    }
+  }
+}
+g.innerHTML = out;
+</script>
+</body>
+</html>
